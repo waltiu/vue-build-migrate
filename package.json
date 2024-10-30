@@ -4,11 +4,11 @@
   "private": "true",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "waltiu",
   "license": "ISC",
   "dependencies": {
+    "@clack/prompts": "^0.7.0",
     "codes": "workspace:^",
     "utils": "workspace:^"
   },

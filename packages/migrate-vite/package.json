@@ -1,6 +1,7 @@
 {
   "name": "migrate-vite",
   "version": "0.0.1",
+  "type": "module",
   "description": "在vue项目中vuecli快速迁移到vite",
   "main": "index.js",
   "scripts": {
