@@ -1,0 +1,19 @@
+{
+  "name": "vue-build-migrate",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "waltiu",
+  "license": "ISC",
+  "dependencies": {
+    "codes": "workspace:^",
+    "utils": "workspace:^"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}

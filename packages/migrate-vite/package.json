@@ -1,0 +1,12 @@
+{
+  "name": "migrate-vite",
+  "version": "0.0.1",
+  "description": "在vue项目中vuecli快速迁移到vite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
