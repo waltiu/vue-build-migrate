@@ -1,14 +1,14 @@
 import * as fs from 'fs'
 
-const BASE_PATH = process.cwd()
+const BASE_PATH = process.cwd() + '/'
 
 export async function getFile(fileName){
-  console.log(fileName,'fileName')
   return await new Promise((resolve, reject) => {
     try {
       const file = fs.readFileSync(BASE_PATH + fileName, 'utf8')
       resolve(file)
     } catch (e) {
+      console.log(e,'e')
       reject(new Error('File not found'))
     }
   })
