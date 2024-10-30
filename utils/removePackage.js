@@ -1,6 +1,6 @@
-import { getFile } from "./file"
+import { getFile } from "./file.js"
 
-const removePackage =async ()=>{
+export const removePackage =async ()=>{
   const file= await getFile('package.json')
   console.log(file,'file')
 }
