@@ -1,19 +1,19 @@
 {
-  "name": "vue-build-migrate",
-  "version": "1.0.0",
-  "private": "true",
-  "description": "",
-  "main": "index.js",
+  "name": "pl-migrate",
+  "version": "0.0.1",
+  "private": false,
+  "description": "frontend packaging tool migrate  前端打包工具迁移",
+  "bin": {
+    "migrate-vite":"./lib/migrate-vite.js",
+    "migrate-rspack":"./lib/migrate-rspack.js",
+    "migrate-rolldown":"./lib/migrate-rolldown.js"
+
+  },
   "scripts": {},
   "author": "waltiu",
   "license": "ISC",
   "dependencies": {
     "@clack/prompts": "^0.7.0",
-    "codes": "workspace:^",
-    "utils": "workspace:^"
-  },
-  "devDependencies": {
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
+    "@types/node": "^22.8.4"
   }
 }
