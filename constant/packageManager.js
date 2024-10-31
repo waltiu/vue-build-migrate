@@ -1,6 +1,6 @@
-const PACKAGE_MANAGER_NPM = "npm";
-const PACKAGE_MANAGER_YARN = "yarn";
-const PACKAGE_MANAGER_PNPM = "pnpm";
+export const PACKAGE_MANAGER_NPM = "npm";
+export const PACKAGE_MANAGER_YARN = "yarn";
+export const PACKAGE_MANAGER_PNPM = "pnpm";
 
 const packageManagerList = [
   {

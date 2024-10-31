@@ -1,28 +1,31 @@
-import * as fs from 'fs'
+import * as fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import answers from "../constant/answers.js";
 
-const BASE_PATH = process.cwd() + '/'
-
-export async function getFile(fileName){
+export const BASE_PATH = process.cwd() + "/";
+export const DIR_NAME = path.dirname(fileURLToPath(import.meta.url));
+console.log(DIR_NAME, "DIR_NAME");
+export async function getFile(fileName, basePath = BASE_PATH) {
   return await new Promise((resolve, reject) => {
     try {
-      const file = fs.readFileSync(BASE_PATH + fileName, 'utf8')
-      resolve(file)
+      const file = fs.readFileSync(basePath + fileName, "utf8");
+      resolve(file);
     } catch (e) {
-      console.log(e,'e')
-      reject(new Error('File not found'))
+      reject(new Error("File not found"));
     }
-  })
+  });
 }
 
 export async function saveFile(fileName, fileContents) {
   return await new Promise((resolve, reject) => {
     try {
-      fs.writeFileSync(BASE_PATH + fileName, fileContents)
-      resolve('OK')
+      fs.writeFileSync(BASE_PATH + fileName, fileContents);
+      resolve("OK");
     } catch (e) {
-      reject(e)
+      reject(e);
     }
-  })
+  });
 }
 
 export async function removeFile(fileName) {
@@ -30,22 +33,60 @@ export async function removeFile(fileName) {
     try {
       // check if file exists
       if (fs.existsSync(BASE_PATH + fileName)) {
-        fs.unlinkSync(BASE_PATH + fileName)
-        resolve('OK')
+        fs.unlinkSync(BASE_PATH + fileName);
+        resolve("OK");
       }
     } catch (e) {
-      reject(e)
+      reject(e);
     }
-  })
+  });
 }
 
 export async function copyFile(source, destination) {
   return await new Promise((resolve, reject) => {
     try {
-      fs.copyFileSync(BASE_PATH + source, BASE_PATH + destination)
-      resolve('OK')
+      fs.copyFileSync(BASE_PATH + source, BASE_PATH + destination);
+      resolve("OK");
     } catch (e) {
-      reject(e)
+      reject(e);
     }
-  })
+  });
+}
+function getDirFilesContent(dir, filePaths = []) {
+  return new Promise((resolve, reject) => {
+    try {
+      const files = fs.readdirSync(dir, { withFileTypes: true });
+      files.forEach(async (item) => {
+        const filePath = `${dir}\\${item.name}`;
+        const status = fs.statSync(filePath);
+        if (status.isDirectory()) {
+          try {
+            const paths = await getDirFilesContent(filePath, filePaths);
+            filePaths = filePaths.concat(paths);
+          } catch (error) {
+            console.log(error, "error");
+          }
+        } else {
+          filePaths.push(filePath);
+        }
+      });
+      resolve(filePaths);
+    } catch (error) {
+      console.log(error, "error");
+    }
+  });
+}
+
+export async function getDirFiles(dirName, folderName) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const directoryPath = path.join(dirName || DIR_NAME, folderName); // 替换为你的目录名
+      const filePaths = await getDirFilesContent(directoryPath);
+      resolve({
+        filePaths, directoryPath
+      });
+    } catch (error) {
+      resolve(error);
+    }
+  });
 }

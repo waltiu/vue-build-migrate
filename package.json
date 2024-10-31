@@ -6,19 +6,20 @@
   "main": "index.js",
   "description": "前端打包工具迁移 - frontend packaging tool migrate",
   "bin": {
-    "migrate-vite":"lib/migrate-vite/index.js",
-    "migrate-rspack":"lib/migrate-rspack/index.js",
-    "migrate-rolldown":"lib/migrate-rolldown/index.js"
+    "migrate-vite": "lib/migrate-vite/index.js",
+    "migrate-rspack": "lib/migrate-rspack/index.js",
+    "migrate-rolldown": "lib/migrate-rolldown/index.js"
   },
   "scripts": {
-    "migrate-vite":"node lib/migrate-vite/index.js",
-    "migrate-rspack":"node lib/migrate-rspack/index.js",
-    "migrate-rolldown":"node lib/migrate-rolldown/index.js"
+    "migrate-vite": "node lib/migrate-vite/index.js",
+    "migrate-rspack": "node lib/migrate-rspack/index.js",
+    "migrate-rolldown": "node lib/migrate-rolldown/index.js"
   },
   "author": "waltiu",
   "license": "ISC",
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "@types/node": "^22.8.4"
-  }
+  },
+  "devDependencies": {}
 }
