@@ -15,9 +15,9 @@ const removeDependencies = (dependencies) => {
 export const removePackage = async () => {
   const file = await getFile("package.json");
   const fileJson = JSON.parse(file);
-  fileJson.dependencies = removeDependencies(fileJson.dependencies);
-  fileJson.devDependencies = removeDependencies(fileJson.devDependencies);
-  return await saveFile("package.json", JSON.stringify(fileJson,null,2));
+  fileJson.dependencies = removeDependencies(fileJson.dependencies || {});
+  fileJson.devDependencies = removeDependencies(fileJson.devDependencies || {});
+  return await saveFile("package.json", JSON.stringify(fileJson, null, 2));
 };
 
 export default removePackage;
