@@ -34,7 +34,7 @@ const addNewTool = async () => {
     await installDependence(dependenceNames.join(" "));
     await addTemplateFile(packagingTool);
   } catch (error) {
-    console.log(error);
+    console.log("addNewTool", error);
   }
 };
 
