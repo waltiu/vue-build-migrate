@@ -1,11 +1,11 @@
 import { execSync } from "child_process";
 import answers from "../constant/answers.js";
-import { NODE_MODULES_CACHE_FILE_PATH } from "../constant/filePath";
+import { NODE_MODULES_CACHE_FILE_PATH } from "../constant/filePath.js";
 import {
   PACKAGE_MANAGER_PNPM,
   PACKAGE_MANAGER_YARN,
-} from "../constant/packageManager";
-import { removeFile } from "./file";
+} from "../constant/packageManager.js";
+import { removeFile } from "./file.js";
 
 export const deleteCache = async () => {
   await removeFile(NODE_MODULES_CACHE_FILE_PATH);
