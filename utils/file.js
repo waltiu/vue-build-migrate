@@ -1,9 +1,9 @@
 import * as fs from "fs";
-import path from "path";
+import path, { basename } from "path";
 import { fileURLToPath } from "url";
 import answers from "../constant/answers.js";
 
-export const BASE_PATH = process.cwd() + "/";
+export const BASE_PATH = process.cwd() + "\\";
 export const DIR_NAME = path.dirname(fileURLToPath(import.meta.url));
 console.log(DIR_NAME, "DIR_NAME");
 export async function getFile(fileName, basePath = BASE_PATH) {
@@ -20,7 +20,9 @@ export async function getFile(fileName, basePath = BASE_PATH) {
 export async function saveFile(fileName, fileContents) {
   return await new Promise((resolve, reject) => {
     try {
-      fs.writeFileSync(BASE_PATH + fileName, fileContents);
+      const dirPath = BASE_PATH + fileName;
+      fs.mkdirSync(path.dirname(dirPath), { recursive: true });
+      fs.writeFileSync(dirPath, fileContents);
       resolve("OK");
     } catch (e) {
       reject(e);
@@ -81,9 +83,11 @@ export async function getDirFiles(dirName, folderName) {
   return new Promise(async (resolve, reject) => {
     try {
       const directoryPath = path.join(dirName || DIR_NAME, folderName); // 替换为你的目录名
+      console.log(directoryPath, "directoryPath");
       const filePaths = await getDirFilesContent(directoryPath);
       resolve({
-        filePaths, directoryPath
+        filePaths,
+        directoryPath,
       });
     } catch (error) {
       resolve(error);

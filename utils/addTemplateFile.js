@@ -1,15 +1,22 @@
-import {  getDirFiles, getFile } from "./file.js";
+import { getDirFiles, getFile, saveFile } from "./file.js";
 
-const getFileContent = async (file,directoryPath) => {
+const getFileContent = async (file, directoryPath) => {
   const content = await getFile(file, "");
   return {
-    [file.replace(directoryPath,'')]: content,
+    filePath:file.replace(directoryPath+"\\", ""),
+    fileContent:content
   };
 };
 
 const addTemplateFile = async (packagingTool) => {
-  const {filePaths,directoryPath,} = await getDirFiles("", `../template/${packagingTool}`);
-  const fileContentMap =await Promise.all(filePaths.map(item=>getFileContent(item,directoryPath)))
-  console.log(fileContentMap,'fileContentMap')
+  const { filePaths, directoryPath } = await getDirFiles(
+    "",
+    `../template/${packagingTool}/`
+  );
+  const fileContentList = await Promise.all(
+    filePaths.map((item) => getFileContent(item, directoryPath))
+  );
+  await Promise.all(fileContentList.map(item=>saveFile(item.filePath,item.fileContent)))
+  
 };
 export default addTemplateFile;
