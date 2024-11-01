@@ -21,7 +21,7 @@ export async function saveFile(fileName, fileContents) {
       const dirPath = BASE_PATH + fileName;
       fs.mkdirSync(path.dirname(dirPath), { recursive: true });
       fs.writeFileSync(dirPath, fileContents);
-      resolve("OK");
+      resolve();
     } catch (e) {
       reject(e);
     }
@@ -34,7 +34,9 @@ export async function removeFile(fileName) {
       // check if file exists
       if (fs.existsSync(BASE_PATH + fileName)) {
         fs.unlinkSync(BASE_PATH + fileName);
-        resolve("OK");
+        resolve();
+      }else{
+        reject()
       }
     } catch (e) {
       reject(e);
@@ -46,7 +48,7 @@ export async function copyFile(source, destination) {
   return await new Promise((resolve, reject) => {
     try {
       fs.copyFileSync(BASE_PATH + source, BASE_PATH + destination);
-      resolve("OK");
+      resolve();
     } catch (e) {
       reject(e);
     }

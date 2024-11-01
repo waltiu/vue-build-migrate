@@ -12,10 +12,10 @@ export default defineConfig({
   plugins: [vue()],
   server:{
     proxy:{
-      "/app": {
-        target:"http://192.168.17.232:30800/",
+      "/api": {
+        target:"",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/app/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     }
   },
@@ -29,7 +29,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ['vue','@hip/icons','@hip/http'],
+      external: ['vue'],
     },
   }
 })
