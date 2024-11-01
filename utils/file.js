@@ -1,11 +1,9 @@
 import * as fs from "fs";
 import path, { basename } from "path";
 import { fileURLToPath } from "url";
-import answers from "../constant/answers.js";
 
 export const BASE_PATH = process.cwd() + "\\";
 export const DIR_NAME = path.dirname(fileURLToPath(import.meta.url));
-console.log(DIR_NAME, "DIR_NAME");
 export async function getFile(fileName, basePath = BASE_PATH) {
   return await new Promise((resolve, reject) => {
     try {
