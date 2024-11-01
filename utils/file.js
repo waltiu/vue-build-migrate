@@ -31,7 +31,6 @@ export async function saveFile(fileName, fileContents) {
 export async function removeFile(fileName) {
   return await new Promise((resolve, reject) => {
     try {
-      // check if file exists
       if (fs.existsSync(BASE_PATH + fileName)) {
         fs.unlinkSync(BASE_PATH + fileName);
         resolve();
