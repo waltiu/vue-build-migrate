@@ -83,7 +83,6 @@ export async function getDirFiles(dirName, folderName) {
   return new Promise(async (resolve, reject) => {
     try {
       const directoryPath = path.join(dirName || DIR_NAME, folderName); // 替换为你的目录名
-      console.log(directoryPath, "directoryPath");
       const filePaths = await getDirFilesContent(directoryPath);
       resolve({
         filePaths,

@@ -1,3 +1,4 @@
+import { DEPENDENCIES_CONFIG_FILE_PATH } from "../constant/filePath.js";
 import { getFile, removeFile, saveFile } from "./file.js";
 
 // 待删除的依赖
@@ -21,16 +22,18 @@ const removeFiles = async () => {
 
 const deleteOldTool = async () => {
   try {
-    const file = await getFile("package.json");
+    const file = await getFile(DEPENDENCIES_CONFIG_FILE_PATH);
     const fileJson = JSON.parse(file);
     fileJson.dependencies = removeDependencies(fileJson.dependencies || {});
     fileJson.devDependencies = removeDependencies(
       fileJson.devDependencies || {}
     );
-    await saveFile("package.json", JSON.stringify(fileJson, null, 2));
+    await saveFile(
+      DEPENDENCIES_CONFIG_FILE_PATH,
+      JSON.stringify(fileJson, null, 2)
+    );
     await removeFiles();
   } catch (error) {
-    console.log("deleteOldTool", error);
   }
 };
 

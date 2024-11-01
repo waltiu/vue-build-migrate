@@ -17,15 +17,13 @@ const installDependence = (dependenceName) => {
     } else if (packageManager === PACKAGE_MANAGER_YARN) {
       command = "yarn add -D ";
     }
-    console.log(command, dependenceName);
     if (!dependenceName || !command) {
       reject("");
     }
     try {
       exec(`${command}${dependenceName}`, (error) => {
-        console.log(error,'error')
-        if(!error){
-          resolve()
+        if (!error) {
+          resolve();
         }
       });
     } catch (error) {
