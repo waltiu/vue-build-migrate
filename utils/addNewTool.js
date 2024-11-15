@@ -29,7 +29,7 @@ const addNewTool = async () => {
     const packagingTool = answers.packagingTool;
     let dependenceNames = [];
     if (packagingTool === PACKAGING_TOOL_VITE) {
-      dependenceNames = ["vite", "@vitejs/plugin-vue"];
+      dependenceNames = ["vite", "@vitejs/plugin-vue", "vite-plugin-dts"];
     }
     await installDependence(dependenceNames.join(" "));
     await addTemplateFile(packagingTool);

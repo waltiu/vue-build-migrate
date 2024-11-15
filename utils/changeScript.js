@@ -5,9 +5,10 @@ import { getFile, saveFile } from "./file.js";
 
 const scriptsMap = {
   [PACKAGING_TOOL_VITE]: {
-    dev: "vite",
-    build: "vue-tsc -b && vite build",
-    preview: "vite preview",
+    instal:"npx pnpm install",
+    serve: "vite",
+    dev:"vite",
+    package: "vite build",
   },
 };
 

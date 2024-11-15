@@ -21,7 +21,10 @@ const installDependence = (dependenceName) => {
       reject("");
     }
     try {
-      exec(`${command}${dependenceName}`, (error) => {
+      console.log(`${command}${dependenceName}`)
+      exec(`${command}${dependenceName}`, (error,stdout) => {
+        console.log(stdout,'stdout')
+        console.log(error)
         if (!error) {
           resolve();
         }

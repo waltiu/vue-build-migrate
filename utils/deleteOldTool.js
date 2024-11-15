@@ -24,10 +24,16 @@ const deleteOldTool = async () => {
   try {
     const file = await getFile(DEPENDENCIES_CONFIG_FILE_PATH);
     const fileJson = JSON.parse(file);
-    fileJson.dependencies = removeDependencies(fileJson.dependencies || {});
-    fileJson.devDependencies = removeDependencies(
-      fileJson.devDependencies || {}
-    );
+    fileJson.devDependencies = {
+      ...removeDependencies(
+        fileJson.devDependencies || {}
+      ),
+      ...removeDependencies(fileJson.dependencies || {})
+    }
+    fileJson.dependencies = {}
+    fileJson.version="5.0.0-beta.0"
+    fileJson.main="lib/index.umd.js"
+    fileJson.module="lib/index.mjs"
     await saveFile(
       DEPENDENCIES_CONFIG_FILE_PATH,
       JSON.stringify(fileJson, null, 2)
